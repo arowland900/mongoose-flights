@@ -1,35 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header') %>
+<table>
+    <thead>
+        <tr>
+            <th>Airline</th>
+            <th>Flight No.</th>
+            <th colspan="3" >Departs</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% flights.forEach(function(f) { %>
+        <tr>
+            <td><%= f.airline %></td>
+            <td><%= f.flightNo %></td>
+            <td><%= f.departs.toLocaleDateString()%></td>
+            <td><%=f.departs.toLocaleTimeString() %></td>
+            <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <title>All Flights</title>
-</head>
-
-<body>
-    <h1>Flights List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Airline</th>
-                <th>Flight No.</th>
-                <th>Departs</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% flights.forEach(function(f) { %>
-            <tr>
-                <td><%= f.airline %></td>
-                <td><%= f.flightNo %></td>
-                <td><%= f.departs %></td>
-            </tr>
-            <% }); %>
-        </tbody>
-    </table>
-    <a class="btn" href="./flights/new">Add New Flight</a>
-</body>
-
-</html>
+<%- include('../partials/footer') %>

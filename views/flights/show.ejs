@@ -1,0 +1,86 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Airline </div>
+  <div><%= flight.airline %></div>
+  <div>Flight No.: </div>
+  <div><%= flight.flightNo %></div>
+  <div>Departs: </div>
+  <div><%=flight.departs.toLocaleDateString() %>
+ <%=flight.departs.toLocaleTimeString() %> </div>
+  <div>Airport: </div>
+  <div><%= flight.airport %></div>
+  <div>Tickets:</div>
+  <div>
+
+  <% if (flight.tickets.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Seat:</th>
+          <th>Price:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.tickets.forEach(function(t) { %>
+        <tr>
+          <td><%= t.seat %></td>
+          <td><%= t.price %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <h5>No Tickets Yet</h5>
+    <% } %>
+  
+ <a class="ticketbtn" href="/flights/<%= flight._id%>/tickets/new">Create a New Ticket</a>
+</div>
+</section>
+
+
+<br><br>
+<h2>Destination Information</h2>
+<form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+  <label>Destination
+    <select name="airport">
+      <option>Select Airport</option>
+      <option value="AUS">AUS</option>
+      <option value="DAL">DAL</option>
+      <option value="LAX">LAX</option>
+      <option value="SEA">SEA</option>
+    </select>
+  </label> <br>
+  <label>Arrives:
+    <input type="datetime-local" name="arrival">
+  </label>
+  <input type="submit" value="Add">
+</form>
+
+
+
+
+<% if (flight.destinations.length) { %>
+<table>
+  <thead>
+    <tr>
+      <th>Arrives:</th>
+      <th>Airport:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flight.destinations.forEach(function(d) { %>
+    <tr>
+      <td><%= d.arrival %></td>
+      <td><%= d.airport %></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<% } else { %>
+<h5>No Destinations Scheduled</h5>
+<% } %>
+
+
+
+<%- include('../partials/footer') %>

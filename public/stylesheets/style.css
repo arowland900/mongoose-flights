@@ -2,25 +2,82 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas: 
+    "nav"
+    "main"
+}
+
+body > nav {
+  grid-area: nav;
+  background-color: #B8C0C2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 0 30px;
 }
 
 a {
-  color: #00B7FF;
-}
-
-.btn {
-  background-color: black;
-  color:white;
-  padding: 10px;
-  border-radius: 4%;
+  color: black;
 }
 
 table, th, td {
   border: 1px solid black;
-  margin: 20px;
-  border-collapse: collapse;
+  margin: 20px auto;
+
 }
 
 th, td {
   padding: 15px;
+}
+
+
+nav > a.active {
+  color: red;
+}
+
+nav > a {
+  margin: 20px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+nav > a:hover {
+  color: red;
+}
+
+
+#show-page {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1em;
+  font-size: 20px;
+  margin: 30px 0px;
+}
+
+#add-destination-form * {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+form {
+  margin: 20px;
+}
+
+.ticketbtn {
+  text-decoration: none;
+  border: 10px solid #B8C0C2;
+  background-color: #B8C0C2;
+  font-size: 20px;
+}
+
+.ticketbtn:hover {
+  color: red;
 }

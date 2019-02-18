@@ -1,6 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
+var destinationSchema = new Schema({
+    airport: {
+        type: String,
+        enum: ['AUS', 'DAL', 'LAX', 'SEA']
+    },
+    arrival: {
+        type: Date,
+    }
+});
+
 var flightSchema = new Schema({
     airline: {
         type: String,
@@ -21,7 +32,14 @@ var flightSchema = new Schema({
             let nextYear = new Date(year + 1, month, day);
             return nextYear;
         }
-    }
+    },
+    destinations: [destinationSchema],
+    airport: {
+        type: String,
+        enum: ['AUS', 'DAL', 'LAX', 'SEA'],
+        default: 'SEA'
+    },
+    tickets:[{type: Schema.Types.ObjectId, ref: 'Ticket'}],
 },{
     timestamps: true
 });
