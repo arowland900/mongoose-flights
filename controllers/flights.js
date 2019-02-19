@@ -8,35 +8,10 @@ module.exports = {
     show
 };
 
-// function show(req, res) {
-//     Flight.findById(req.params.id), function(err, flight) {
-//         Ticket.find({flight: flight._id}, function(err, tickets) {
-//                 res.render('flights/show', { title: 'Flight Detail', flight, tickets });
-//             });        
-//     };
-// }
-
-
-
-// function show(req, res) {
-//     Flight.findById(req.params.id)
-//       .populate('tickets').exec(function (err, flight) {
-//         Flight.find({ _id: {$nin: flight.tickets}})
-//           .exec(function (err, tickets) {
-//             console.log(tickets);
-//             res.render('flights/show', { title: 'Flight Detail', flight, tickets });
-//           });
-//       });
-//   }
-
-
 function show(req, res) {
     Flight.findById(req.params.id)
     .populate('tickets').exec(function (err, flight) {
-        //Ticket.find({ flight: flight._id }, function (err, tickets) {
-            // console.log(tickets);
         res.render('flights/show', { title: 'Flight Detail', flight });
-        //});
     });
 }
 
